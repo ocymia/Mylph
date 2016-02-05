@@ -10,9 +10,6 @@ function geocode($address){
 	return $coord;
 }
 
-// test de la fonction
-print_r(geocode("12 rue du cimetière, fouches, belgique"));
-
 
 
 ?>
