@@ -35,9 +35,9 @@ session_start();
 				//VERIFICATION
 				if (!empty($emailLogin)&&!empty($passwordLogin)) {
 					//require connection to DB in config
-					require 'inc/config.php';
+					require 'config.php';
 					// functions.php should contain function for user verification with DB
-					require 'inc/functions.php';
+					require 'functions.php';
 
 					//VERIFY PWD*********
 					if (user_verif($emailLogin,$passwordLogin)) {
