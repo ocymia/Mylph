@@ -6,23 +6,24 @@ require 'inc/functions.php';
 
 //if the form is submitted == if there are post variables
 if (!empty($_POST)) {
-	//print_pre($_POST); // pour debug
+	print_r($_POST); // pour debug
 	// Récupération et traitement des variables du formulaire d'ajout/modification
 	
 	//loc_id ; //auto incremented at creation?!
 	$loc_name = isset($_POST['loc_name']) ? trim($_POST['loc_name']) : ''; 
 	$loc_adr = isset($_POST['loc_adr']) ? trim($_POST['loc_adr']) : ''; 
 	$loc_city = isset($_POST['loc_city']) ? trim($_POST['loc_city']) : ''; 
-	$loc_cp= isset($_POST['fil_id']) ? intval(trim($_POST['fil_id'])) : 0;
+	$loc_cp= isset($_POST['loc_cp']) ? intval(trim($_POST['loc_cp'])) : 0;
 	$loc_desc = isset($_POST['loc_desc']) ? trim($_POST['loc_desc']) : ''; 
 	//$loc_img est probablemnt a changer vu qu'on va devoir importer un fichier blob...
 	$loc_img = isset($_POST['loc_img']) ? trim($_POST['loc_img']) : ''; 
-	$loctype_typ_id = isset($_POST['fil_id']) ? intval(trim($_POST['fil_id'])) : 0; 
+	$loctype_typ_id = isset($_POST['loctype_typ_id']) ? intval(trim($_POST['loctype_typ_id'])) : 0; 
+	
 	//$loc_x ; //auto via google api?!
 	//$loc_y ; //auto via google api?!
 
 	//sql for adding location
-	add_loc_sql ="
+	$add_loc_sql ="
 		INSERT INTO locations (loc_name,loc_adr ,loc_city ,loc_cp ,loc_desc ,loc_img ,loctype_typ_id)
 		VALUES (:name,:adr ,:city ,:cp ,:desc ,:img ,:typ_id)
 	";
@@ -35,9 +36,10 @@ if (!empty($_POST)) {
 	$pdoStatement->bindValue(':city', $loc_city);
 	$pdoStatement->bindValue(':cp', $loc_cp);
 	$pdoStatement->bindValue(':desc', $loc_desc);
+	$pdoStatement->bindValue(':img', $loc_img);
 	$pdoStatement->bindValue(':typ_id', $loctype_typ_id);
 
-
+	$pdoStatement->execute();
 
 }//end (!empty($_POST))
 
@@ -71,8 +73,9 @@ if (!empty($_POST)) {
 			</tr>
 			<tr>
 				<td>Type :&nbsp;</td>
-				<td><input type="text" name="loc_type" value=""/></td>
+				<td><input type="text" name="loctype_typ_id" value=""/></td>
 			</tr>
+			<td><input type="submit" value=""/></td>
 		</table>
 	</fieldset>
 </form>	
