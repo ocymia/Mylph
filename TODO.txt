@@ -1,0 +1,1 @@
+add_location.php should have radio buttons for the types
