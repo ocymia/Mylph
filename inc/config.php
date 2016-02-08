@@ -1,6 +1,6 @@
 <?php
 // Connexion à la DB
-$dsn = 'mysql:host=localhost;dbname=mylph;charset=UTF8';
+$dsn = 'mysql:host=127.0.0.1;dbname=mylph;charset=UTF8';
 $user = 'root';
 $password = 'toor';
 
