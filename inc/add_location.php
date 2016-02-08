@@ -75,7 +75,7 @@ if (!empty($_POST)) {
 				<td>Type :&nbsp;</td>
 				<td><input type="text" name="loctype_typ_id" value=""/></td>
 			</tr>
-			<td><input type="submit" value=""/></td>
+			<td><input type="submit" value="add location"/></td>
 		</table>
 	</fieldset>
 </form>	
