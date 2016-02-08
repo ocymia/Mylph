@@ -29,7 +29,7 @@ CREATE TABLE users (
   usr_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   roles_id INTEGER UNSIGNED NOT NULL,
   usr_email VARCHAR(25) NULL,
-  usr_pwd VARCHAR(25) NULL,
+  usr_pwd VARCHAR(128) NULL,
   usr_nick VARCHAR(25) NULL,
   PRIMARY KEY(usr_id),
   INDEX users_FKIndex1(roles_id)

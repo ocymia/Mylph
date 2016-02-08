@@ -12,8 +12,8 @@ session_start();
 	<?php
 		//FIRST CHECK IF USER IS ALREADY LOGGED IN**************
 		if (!empty($_SESSION)) {
-			echo 'already logged in';
-			//if session exits check if valid?!
+			echo 'You are already logged in.<br/>';
+			//if session exists check if valid?!
 			//forward to accueil.php
 		} else {
 			//if not logged in show login form
@@ -35,16 +35,16 @@ session_start();
 				//VERIFICATION
 				if (!empty($emailLogin)&&!empty($passwordLogin)) {
 					//require connection to DB in config
-					require 'php/config.php';
+					require 'inc/config.php';
 					// functions.php should contain function for user verification with DB
-					require 'php/functions.php';
+					require 'inc/functions.php';
 
 					//VERIFY PWD*********
 					if (user_verif($emailLogin,$passwordLogin)) {
-						echo 'signed in success<br/>';
+						echo 'Signed in successfully.<br/>';
 					}
 				} else {
-					echo 'email and/or pwd empty<br/>';
+					echo 'E-mail and/or password field(s) empty.<br/>';
 				}
 			}
 		}

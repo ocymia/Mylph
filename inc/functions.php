@@ -4,29 +4,29 @@ function user_verif($emailLogin,$passwordLogin){
 	GLOBAL $pdo;
 	$checkUser="
 		SELECT *
-		FROM user
-		WHERE usr_email = :user
+		FROM users
+		WHERE usr_email = :userEmail
 	";
 	$pdoStatement = $pdo->prepare($checkUser);
-	$pdoStatement->bindValue(':user',$emailLogin,PDO::PARAM_STR);
+	$pdoStatement->bindValue(':userEmail',$emailLogin,PDO::PARAM_STR);
 	if ($pdoStatement->execute()) {
 		if ($pdoStatement->rowCount()>0) {
 			//GET HASHED PWD
 			$res=$pdoStatement->fetch();
-			$passwordHashed=$res['usr_password'];
+			$passwordHashed=$res['usr_pwd'];
 			//PWD CHECK
 			if (password_verify($passwordLogin,$passwordHashed)) {
 				$_SESSION['login']=$emailLogin;
 				$_SESSION['pwd']=$passwordHashed;
 				return true;
 			} else {
-				echo 'wrong password';
+				echo 'Wrong password.<br/>';
 			}
 		} else {
-			echo 'sign in failed<br/>';
+			echo 'Sign in failed<br/>';
 		}
 	} else {
-		echo 'query failed<br/>';
+		echo 'Query failed<br/>';
 	}
 }
 
