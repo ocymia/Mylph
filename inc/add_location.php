@@ -49,7 +49,8 @@ if (!empty($_POST)) {
 //			loc_desc ; loc_id ; loc_img ; loc_name ; loc_x ; loc_y
 ?>
 <form action="" method="post">
-	<legend>Add location
+	<legend>Add location</legend>
+	<fieldset>
 		<table>
 			<tr>
 				<td>Nom :&nbsp;</td>
