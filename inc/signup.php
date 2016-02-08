@@ -8,10 +8,9 @@
 <pre>
 	<?php
 		if (!empty($_SESSION)) {
-			echo 'You are already signed in.<br/>';
-			echo '<a href="../accueil.php">Continue</a>';
+			//IF SESSION EXITS REDIRECT TO ACCUEIL
+			header("Location: accueil.php");
 			exit;
-			//redirect to whatever****************
 		}
 		if (!empty($_POST)) {
 			//>GET DATA FROM $_POST AND FORMAT IT
@@ -46,8 +45,10 @@
 					//EXECUTE
 					if ($pdoStatement->execute()) {
 						echo 'You have signed up successfully<br/>';
-						$_SESSION['login']=$emailSignup;
-						$_SESSION['pwd']=password_hash($passwordSignup1,PASSWORD_BCRYPT);
+						//$_SESSION['login']=$emailSignup;
+						//$_SESSION['pwd']=password_hash($passwordSignup1,PASSWORD_BCRYPT);
+						header("Location: accueil.php");
+						exit;
 					} else {
 						echo 'Execution failed.<br/>';
 					}

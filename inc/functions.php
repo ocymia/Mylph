@@ -18,8 +18,8 @@ function user_verif($emailLogin,$passwordLogin){
 			$passwordHashed=$res['usr_pwd'];
 			//PWD CHECK
 			if (password_verify($passwordLogin,$passwordHashed)) {
-				$_SESSION['login']=$emailLogin;
-				$_SESSION['pwd']=$passwordHashed;
+				//$_SESSION['login']=$emailLogin;
+				//$_SESSION['pwd']=$passwordHashed;
 				return true;
 			} else {
 				echo 'Wrong password.<br/>';

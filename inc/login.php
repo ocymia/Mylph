@@ -12,9 +12,9 @@ session_start();
 	<?php
 		//FIRST CHECK IF USER IS ALREADY LOGGED IN**************
 		if (!empty($_SESSION)) {
-			echo 'You are already logged in.<br/>';
-			//if session exists check if valid?!
-			//forward to accueil.php
+			//IF SESSION EXISTS REDIRECT TO ACCUEIL.PHP
+			header("Location: accueil.php");
+			exit;
 		} else {
 			//if not logged in show login form
 			?> 
@@ -41,7 +41,9 @@ session_start();
 
 					//VERIFY PWD*********
 					if (user_verif($emailLogin,$passwordLogin)) {
-						echo 'Signed in successfully.<br/>';
+						//If login successful redirect to accueil.php
+						header("Location: accueil.php");
+						exit;
 					}
 				} else {
 					echo 'E-mail and/or password field(s) empty.<br/>';
