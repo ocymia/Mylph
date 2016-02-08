@@ -16,6 +16,9 @@ Juste en attendant d avoir un acceuil afin de donner easy access aux trux
 	<li>
 		<a href="inc/login.php">login.php</a>
 	</li>
+	<li>
+		<a href="inc/admin_users.php">admin_users.php</a>
+	</li>
 
 
 </ul>
