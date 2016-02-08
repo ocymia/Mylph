@@ -1,5 +1,7 @@
 <?php
 
+
+//Max
 function user_verif($emailLogin,$passwordLogin){
 	GLOBAL $pdo;
 	$checkUser="
@@ -29,5 +31,13 @@ function user_verif($emailLogin,$passwordLogin){
 		echo 'Query failed<br/>';
 	}
 }
+
+function add_location() {
+	//sql to add a location
+	$add_loc_sql ="";
+	
+
+}
+
 
 ?>
