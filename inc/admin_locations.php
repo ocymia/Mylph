@@ -1,8 +1,7 @@
 <pre>
 <?php
 //maybe check if session  var role is the admin? (==2)
-require 'config.php';
-
+require 'header.php';
 
 //show list of users
 $getAllLocationsSql = "SELECT * FROM locations";
@@ -19,7 +18,7 @@ foreach ($resList as $key => $value){
 	echo $value['loc_cp'].'&nbsp';
 	echo $value['loc_city'].'&nbsp';
 	echo $value['loc_desc'].'&nbsp';
-	echo $value['loc_img'].'&nbsp';
+	echo '<img id="adm_loc_img" src="data:image/jpeg;base64,'.base64_encode($value['loc_img']).'"/>'.'&nbsp';
 	echo '<br>--------------------------------<br>';
 }
 

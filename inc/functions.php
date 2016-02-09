@@ -84,6 +84,43 @@ function map_unique($lat,$lng,$name){
 
 
 
-
+// Fonction qui va afficher une map avec un pin / marker pour chaque lieu
+function map_multiple(){
+    // Ici on récupère les coordonées de chaque lieu
+    global $pdo;
+    $sql = "SELECT loc_x, loc_y, loc_name FROM locations";
+    $pdoStatement = $pdo->query($sql);
+	$resList = $pdoStatement->fetchAll();
+	$i = 0;
+	// Ensuite on crée la div de notre map avec ses paramètres
+	?>
+    <div id="map_multiple"></div>
+    <script>
+    var myLatLng = {lat: <?php echo $resList[0][0] . ", lng: " . $resList[0][1]; ?>};
+      var map;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map_multiple'), {
+          center: myLatLng,
+          zoom: 15
+        });
+    <?php
+    // on boucle pour afficher les markers qui sont nos lieux
+	foreach($resList as $data){
+		?>
+        marker<?php echo $i; ?> = new google.maps.Marker({
+	    position: {lat:<?php echo $data['loc_x'] . " ,lng: " . $data['loc_y']; ?> },
+    	map: map,
+    	title: '<?php echo $data['loc_name'];$i++; ?>'});		
+	<?php
+	}
+	?>
+	}
+    </script>
+    <!-- Ici on utilise une key associée à mon compte google, on a de la marge meme en gratuit -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHaHNjsn7D8rJRnaiLC_s9OhgdNEh9sk&callback=initMap"
+    async defer></script>
+    <?php
+}
 
 ?>
