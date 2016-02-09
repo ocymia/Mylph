@@ -1,6 +1,6 @@
 <?php require 'header.php';
 require 'config.php'; 
-
+session_start();
 //get the get from url sent by acceuil...
 ?>
 
@@ -49,12 +49,29 @@ echo '<h2>Description : </h2>';
 echo $thisLocation['loc_desc'].'<br>';
 echo '<h2>Map : </h2><br>';
 echo $thisLocation['loc_img'].'image space<br>';
+
+echo '<br><br><br>';
+echo '<h3>G1v3 R@t1ng</h3><br>';
+//get current rating if exists
+$currentSissi = $_SESSION['user_id'];//id!
+$currentLoc = $_GET['loc'];
+$getRating="SELECT vote_rating FROM vote WHERE locations_loc_id=".$currentLoc." AND users_usr_id=".$currentSissi;
+$pdoStatement=$pdo->query($getRating);
+$thisRating = $pdoStatement -> fetch();
+print_r($thisRating);
+//show that many stars
+//each click on a star should make the nbew rating update
+
+
+
 }
 
 ?>
 <form action="" method="post">
 	<input type="submit" value="like"/>
 </form>
+
+
 
 
 <?php require 'footer.php'; ?>
