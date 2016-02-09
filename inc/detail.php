@@ -15,8 +15,10 @@ if (!empty($_GET)) {
 	//echo $thisId;
 	$getLocation="	SELECT * FROM locations WHERE loc_id = ".$thisId;
 	$pdoStatement=$pdo->query($getLocation);
-	$thisLocation = $pdoStatement -> fetchAll();
-	print_r($thisLocation);exit;
+	$thisLocation = $pdoStatement -> fetch();
+	print_r($thisLocation);//exit;
+
+
 echo $thisLocation['loc_name'].'<br>';
 
 switch ($thisLocation['loctype_typ_id']) {
@@ -42,11 +44,8 @@ switch ($thisLocation['loctype_typ_id']) {
 echo $thisLocation['loc_adr'].'<br>';
 echo $thisLocation['loc_cp'].'<br>';
 echo $thisLocation['loc_city'].'<br>'.'<br>';
-
 echo $thisLocation['loc_desc'].'<br>';
-
-echo $thisLocation['loc_img'].'<br>';
-
+echo $thisLocation['loc_img'].'image space<br>';
 }
 
 
