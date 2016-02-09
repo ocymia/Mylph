@@ -48,6 +48,7 @@ echo $thisLocation['loc_city'].'<br>'.'<br>';
 echo '<h2>Description : </h2>';
 echo $thisLocation['loc_desc'].'<br>';
 echo '<h2>Map : </h2><br>';
+map_unique($thisLocation['loc_x'],$thisLocation['loc_y'],$thisLocation['loc_name']);
 echo $thisLocation['loc_img'].'image space<br>';
 
 echo '<br><br><br>';
@@ -63,17 +64,54 @@ $thisRating = $pdoStatement -> fetch();
 echo 'thisRating';
 print_r($thisRating);
 //show that many stars
-//each click on a star should make the nbew rating update
-
-
+//each click on a star should make the new rating update
 
 }
 
 
+
+
+// on vérifie si l'utilisateur a déjà liké
+$sql = "SELECT COUNT(*) AS voted FROM vote WHERE users_usr_id = $currentSissi AND locations_loc_id = :id";
+$pdoStatement = $pdo->prepare($sql);
+$pdoStatement->bindValue(':id', $_GET['loc']);
+$pdoStatement->execute();
+$resList = $pdoStatement->fetch();
+$voted = $resList['voted'];
+// on récolte le nombre de likes
+$sql = "SELECT COUNT(*) AS likes FROM vote WHERE locations_loc_id = :id";
+$pdoStatement = $pdo->prepare($sql);
+$pdoStatement->bindValue(':id', $_GET['loc']);
+$pdoStatement->execute();
+$resList = $pdoStatement->fetch();
+$likes = $resList['likes'];
+echo $voted;
 ?>
 <form action="" method="post">
-	<input type="submit" value="like"/>
+	<input type="submit" value="<?php 
+		if($voted == 0){
+			echo "Like! (" . $likes . ")";
+		}else{
+			echo "(".$likes." likes)";
+		}?>
+		"/>
+	<input type="hidden" name="like" value="<?php echo $liked; ?>">
 </form>
+<?php
+
+// en cas de like, si on a pas deja liké, on passe la valeur de vote à 1
+if(isset($_POST['like']) && $voted == 0){
+	echo $currentSissi . " " . $_GET['loc'];
+	$sql = "INSERT INTO vote (users_usr_id, locations_loc_id, vote_like)
+			VALUES (:id,:loc_id,1)";
+			echo $sql;
+	$pdoStatement = $pdo->prepare($sql);
+	$pdoStatement->bindValue(':id', $currentSissi);
+	$pdoStatement->bindValue(':loc_id', $_GET['loc']);
+	$pdoStatement->execute();
+	echo $currentSissi . " " . $_GET['loc'];
+}
 
 
-<?php require 'footer.php'; ?>
+
+require 'footer.php'; ?>
