@@ -36,6 +36,8 @@ foreach ($results as $key => $loc_data) {
 	//detail button that posts get and sends to detail.php with that get
 	echo '<form action="detail.php?loc='.$loc_data['loc_id'].'" method="post">';
 	//echo '<input type="hidden" name="l_id" value="'.$value['usr_id'].'"/>';
+	//next line seems weird, but in fact it adds the image. really, trust me!
+	echo '<img id="adm_loc_img" src="data:image/jpeg;base64,'.base64_encode($loc_data['loc_img']).'"/>';
 	echo '<input type="submit" value="details"/>';
 	echo '</form>';
 
