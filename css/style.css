@@ -19,3 +19,8 @@ img{
 	width:500px;
 	border:solid black 1px;
 }
+
+.star{
+	height: 30px;
+	width: 30px;
+}
