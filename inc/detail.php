@@ -71,7 +71,9 @@ print_r($thisRating);
 
 
 ?>
-
+<form action="" method="post">
+	<input type="submit" value="like"/>
+</form>
 
 
 <?php require 'footer.php'; ?>
