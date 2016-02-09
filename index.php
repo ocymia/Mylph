@@ -24,5 +24,13 @@ Juste en attendant d avoir un acceuil afin de donner easy access aux trux
 </ul>
 
 
+
+ <link rel="stylesheet" href="style/style.css">
+<?php
+include('inc/config.php');
+include('inc/functions.php');
+map_multiple();
+?>
+
 </body>
 </html>
