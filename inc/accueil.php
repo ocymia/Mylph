@@ -6,7 +6,7 @@ include_once '../inisql/initialize_roles.php';
 <pre>
 <?php
  
-require 'config.php';
+
 //SQL REQUEST
 $getLocations="
 	SELECT *
