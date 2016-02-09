@@ -10,6 +10,8 @@ session_start();
 <pre>
 
 <?php 
+$ratingExists=0;
+
 if (!empty($_GET['loc'])) {
 	//do all the stuff to display the desired locations details
 	$thisId = $_GET['loc'];
@@ -57,7 +59,7 @@ if (!empty($_GET['loc'])) {
 	$getRating="SELECT vote_rating FROM vote WHERE locations_loc_id=".$currentLoc." AND users_usr_id=".$currentSissi;
 //if rating != 0 then update instead
 	$pdoStatement=$pdo->query($getRating);
-	if ()
+	if ($pdoStatement->rowCount()>0) {echo 'rating exists';$ratingExists=1;}
 	echo 'pdoStatement';
 	print_r($pdoStatement);
 	$thisRating = $pdoStatement -> fetch();
@@ -67,12 +69,16 @@ if (!empty($_GET['loc'])) {
 
 
 if (!empty($_GET['rate'])&&!empty($_GET['loc'])&&!empty($_SESSION['user_id'])) {
-	$setRating=
-	"INSERT INTO vote (locations_loc_id,users_usr_id,vote_rating)
-	VALUES (".$_GET['loc'].",".$_SESSION['user_id'].",".$_GET['rate'].")";
-	$pdoRating=$pdo->query($setRating);
-	header ('Location: http://127.0.0.1/mylph/inc/detail.php?loc='.$_GET['loc']);
-	exit;
+	if ($ratingExists=0){
+		$setRating=
+		"INSERT INTO vote (locations_loc_id,users_usr_id,vote_rating)
+		VALUES (".$_GET['loc'].",".$_SESSION['user_id'].",".$_GET['rate'].")";
+		$pdoRating=$pdo->query($setRating);
+		header ('Location: http://127.0.0.1/mylph/inc/detail.php?loc='.$_GET['loc']);
+		exit;
+	} else if ($ratingExists=1){
+		
+	}
 }
 
 
