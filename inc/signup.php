@@ -48,9 +48,16 @@
 					$pdoStatement->bindValue(':role',$userRole,PDO::PARAM_INT);
 					//EXECUTE
 					if ($pdoStatement->execute()) {
-						echo 'You have signed up successfully<br/>';
-						//$_SESSION['login']=$emailSignup;
-						//$_SESSION['pwd']=password_hash($passwordSignup1,PASSWORD_BCRYPT);
+						//echo 'You have signed up successfully<br/>';
+						//store user id in session for further use
+						$idRequest="
+							SELECT usr_id
+							FROM users
+							WHERE usr_email='".$emailSignup."'"
+						;
+						$pdoStatement=$pdo->query($idRequest);
+						$fetchId=$pdoStatement->fetch();
+						$_SESSION['user_id']=$fetchId['usr_id'];
 						header("Location: accueil.php");
 						exit;
 					} else {

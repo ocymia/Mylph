@@ -41,7 +41,16 @@ session_start();
 
 					//VERIFY PWD*********
 					if (user_verif($emailLogin,$passwordLogin)) {
-						//If login successful redirect to accueil.php
+						//If login successful redirect to accueil.php and store id in session
+						$idRequest="
+							SELECT usr_id
+							FROM users
+							WHERE usr_email='".$emailLogin."'"
+						;
+						$pdoStatement=$pdo->query($idRequest);
+						$fetchId=$pdoStatement->fetch();
+						$_SESSION['user_id']=$fetchId['usr_id'];
+						print_r($_SESSION);
 						header("Location: accueil.php");
 						exit;
 					}

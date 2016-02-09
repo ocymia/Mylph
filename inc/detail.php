@@ -51,7 +51,10 @@ echo '<h2>Map : </h2><br>';
 echo $thisLocation['loc_img'].'image space<br>';
 }
 
-
 ?>
+<form action="" method="post">
+	<input type="submit" value="like"/>
+</form>
+
 
 <?php require 'footer.php'; ?>
