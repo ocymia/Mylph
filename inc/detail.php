@@ -47,7 +47,7 @@ if (!empty($_GET['loc'])) {
 	echo '<h2>Description : </h2>';
 	echo $thisLocation['loc_desc'].'<br>';
 	echo '<h2>Map : </h2><br>';
-	echo $thisLocation['loc_img'].'image space<br>';
+	echo '<img id="adm_loc_img" src="data:image/jpeg;base64,'.base64_encode($value['loc_img']).'"/>';
 	echo '<br><br><br>';
 	echo '<h3>G1v3 R@t1ng</h3><br>';
 	//get current rating if exists
