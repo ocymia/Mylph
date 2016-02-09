@@ -1,4 +1,8 @@
-<?php require 'header.php'; ?>
+<?php
+require 'header.php';
+include_once '../inisql/initialize_loc_types.php';
+include_once '../inisql/initialize_roles.php';
+?>
 <pre>
 <?php
  
@@ -16,12 +20,14 @@ $results=$pdoStatement->fetchAll();
 foreach ($results as $key => $loc_data) {
 	echo '<br/>';
 	echo $loc_data['loc_name'].'<br/>';
-	if ($loc_data['loctype_typ_id']==0) {
+	if ($loc_data['loctype_typ_id']==1) {
 		echo 'Restaurant<br/>';
-	} else if ($loc_data['loctype_typ_id']==1) {
-		echo '<br/>';
 	} else if ($loc_data['loctype_typ_id']==2) {
-		echo '<br/>';
+		echo 'Entertainment<br/>';
+	} else if ($loc_data['loctype_typ_id']==3) {
+		echo 'Accessibility<br/>';
+	} else if ($loc_data['loctype_typ_id']==4) {
+		echo 'Other<br/>';
 	}
 	echo $loc_data['loc_adr'].'<br/>';
 	echo $loc_data['loc_cp'].'<br/>';
