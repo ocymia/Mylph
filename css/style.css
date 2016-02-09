@@ -15,3 +15,7 @@ html, body {
 	height: 300px;
 }
 /*fin necessités de maps*/
+img{
+	width:500px;
+	border:solid black 1px;
+}
