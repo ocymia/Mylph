@@ -7,6 +7,7 @@ require 'functions.php';
 //if the form is submitted == if there are post variables
 if (!empty($_POST)) {
 	print_r($_POST); // pour debug
+	print_r($_FILES); //for debug too
 	// Récupération et traitement des variables du formulaire d'ajout/modification
 	
 	//loc_id ; //auto incremented at creation?!
@@ -22,6 +23,10 @@ if (!empty($_POST)) {
 	//$loc_x ; //auto via google api?!
 	//$loc_y ; //auto via google api?!
 
+	//for uploading image
+	if (count($_FILES)>0) {
+		$loc_img = file_get_contents($_FILES['loc_img']['tmp_name']);
+	}
 	//sql for adding location
 	$add_loc_sql ="
 		INSERT INTO locations (loc_name,loc_adr ,loc_city ,loc_cp ,loc_desc ,loc_img ,loctype_typ_id)
@@ -48,7 +53,7 @@ if (!empty($_POST)) {
 // db fields are: loctype_typ_id ; loc_adr ; loc_city ; loc_cp
 //			loc_desc ; loc_id ; loc_img ; loc_name ; loc_x ; loc_y
 ?>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 	<legend>Add location</legend>
 	<fieldset>
 		<table>
@@ -79,7 +84,12 @@ if (!empty($_POST)) {
 				<input type="radio" name="loctype_typ_id" value="3"/>Accessibility
 				<input type="radio" name="loctype_typ_id" value="4"/>Other</td>
 			</tr>
-			<td><input type="submit" value="add location"/></td>
+			<tr>
+				<td><input type="file" name="loc_img" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="add location"/></td>
+			</tr>
 		</table>
 	</fieldset>
 </form>	
