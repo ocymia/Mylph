@@ -27,6 +27,12 @@ foreach ($results as $key => $loc_data) {
 	echo $loc_data['loc_cp'].'<br/>';
 	echo $loc_data['loc_city'].'<br/>';
 	echo $loc_data['loc_desc'].'<br/>';
+	//detail button that posts get and sends to detail.php with that get
+	echo '<form action="detail.php?loc='.$loc_data['loc_id'].'" method="post">';
+	//echo '<input type="hidden" name="l_id" value="'.$value['usr_id'].'"/>';
+	echo '<input type="submit" value="details"/>';
+	echo '</form>';
+
 }
 ?>
 </pre>
