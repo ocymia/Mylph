@@ -16,11 +16,12 @@ if (!empty($_GET)) {
 	$getLocation="	SELECT * FROM locations WHERE loc_id = ".$thisId;
 	$pdoStatement=$pdo->query($getLocation);
 	$thisLocation = $pdoStatement -> fetch();
-	print_r($thisLocation);//exit;
+	//print_r($thisLocation);//exit;
 
-
+echo '<h2>Name : </h2>';
 echo $thisLocation['loc_name'].'<br>';
 
+echo '<h2>Category : </h2>';
 switch ($thisLocation['loctype_typ_id']) {
 	case '1':
 		echo "Restaurant".'<br>';
@@ -40,11 +41,13 @@ switch ($thisLocation['loctype_typ_id']) {
 		break;
 }
 
-
+echo '<h2>Address : </h2>';
 echo $thisLocation['loc_adr'].'<br>';
-echo $thisLocation['loc_cp'].'<br>';
+echo $thisLocation['loc_cp'].'&nbsp';
 echo $thisLocation['loc_city'].'<br>'.'<br>';
+echo '<h2>Description : </h2>';
 echo $thisLocation['loc_desc'].'<br>';
+echo '<h2>Map : </h2><br>';
 echo $thisLocation['loc_img'].'image space<br>';
 }
 
