@@ -41,11 +41,10 @@ if (!empty($_POST)) {
 			$pdoStatement->bindValue(':loc_x', $locXY['1']);
 			$pdoStatement->bindValue(':loc_y', $locXY['2']);
 
-	} else {
+	}else if(!empty($_GET['id'])){
 	// sql if modification
 		$add_loc_sql ="
-		UPDATE locations SET (loc_name,loc_adr ,loc_city ,loc_cp ,loc_desc ,loctype_typ_id)
-		VALUES (:name,:adr ,:city ,:cp ,:desc ,:typ_id) WHERE loc_id = :id
+		UPDATE locations SET loc_name=:name,loc_adr=:adr ,loc_city=:city ,loc_cp=:cp ,loc_desc=:desc ,loctype_typ_id=:typ_id WHERE loc_id = :id
 		";
 		echo $add_loc_sql;
 			$pdoStatement = $pdo->prepare($add_loc_sql);

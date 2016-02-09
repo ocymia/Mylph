@@ -18,7 +18,7 @@ foreach ($resList as $key => $value){
 	echo $value['loc_cp'].'&nbsp';
 	echo $value['loc_city'].'&nbsp';
 	echo $value['loc_desc'].'&nbsp';
-	echo '<img id="adm_loc_img" src="data:image/jpeg;base64,'.base64_encode($value['loc_img']).'"/>'.'&nbsp';
+	echo '<img id="adm_loc_img" src="data:image/jpeg;base64,'.base64_encode($value['loc_img']).'"/></a>'.'&nbsp';
 	echo '<br>--------------------------------<br>';
 }
 
