@@ -77,6 +77,7 @@ if (!empty($_GET['rate'])&&!empty($_GET['loc'])&&!empty($_SESSION['user_id'])) {
 		header ('Location: http://127.0.0.1/mylph/inc/detail.php?loc='.$_GET['loc']);
 		exit;
 	} else if ($ratingExists=1){
+		//update instead
 		
 	}
 }
