@@ -1,0 +1,12 @@
+/*indispensable à l'api maps*/
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map_unique {
+	width: 600px;
+	height: 300px;
+}
+/*fin necessités de maps*/
