@@ -1,7 +1,7 @@
 <?php
 //initialize db location types
 //conenction details for db // contains $pdo
-
+require '../inc/config.php';
 
 
 $rowcount_types = "SELECT * FROM loctype";

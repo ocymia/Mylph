@@ -67,7 +67,7 @@ function map_unique($lat,$lng,$name){
       function initMap() {
         map = new google.maps.Map(document.getElementById('map_unique'), {
           center: myLatLng,
-          zoom: 12
+          zoom: 14
         });
         marker = new google.maps.Marker({
 	    position: myLatLng,
