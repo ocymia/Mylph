@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php
+require 'header.php';
+session_start();
+?>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -22,7 +25,8 @@
 			//Vérifications
 			if ($passwordSignup1===$passwordSignup2 && !empty($passwordSignup1) && !empty($emailSignup) && filter_var($_POST['emailSignup'],FILTER_VALIDATE_EMAIL) && strlen($passwordSignup1)>7 && preg_match('/[A-Z]/',$passwordSignup1) && preg_match('/[0-9]/', $passwordSignup1)) {
 				//REQUIRE CONNECTION TO DB
-				require 'config.php';
+				//better put this config.php in comment...
+				//require 'config.php';
 				//CHECK IF EMAIL IS UNIQUE
 				$emailCheck="
 					SELECT usr_email

@@ -26,7 +26,8 @@ if (!empty($token)) {
 	if ($pdoStatement->execute() && $pdoStatement->rowCount() > 0) {
 
 		$res = $pdoStatement->fetch();
-
+		//store user id for later to update table:
+		$userId=$res['usr_id'];
 		$tokenValid = md5($emailClient.'salty_mylph'.$res['usr_pwd']);
 
 		// COMPARE TOKENS
@@ -45,7 +46,23 @@ if (!empty($token)) {
 else {
 	echo "WHERE'S YOUR TOKEN DUDE?!<br />";
 }
-
+//GET NEW PASSWORD FROM $_POST AND CHECK IF VALID*******
+if (!empty($_POST)) {
+	$passwordChange1=isset($_POST['passwordChange1'])? $_POST['passwordChange1']:'';
+	$passwordChange2=isset($_POST['passwordChange2'])? $_POST['passwordChange2']:'';
+	//IF PWD VALID, DO THIS:
+	if ($passwordChange1===$passwordChange2 && !empty($passwordChange1) && strlen($passwordChange1)>7 && preg_match('/[A-Z]/',$passwordChange1) && preg_match('/[0-9]/', $passwordChange1)) {
+		//query to update pwd in database
+		$updatePassword="
+			UPDATE users
+			SET usr_pwd= :newPassword
+			WHERE usr_id=".$userId;
+		$pdoStatement=$pdo->prepare($updatePassword);
+		$pdoStatement->bindValue(':newPassword',password_hash($passwordChange1,PASSWORD_BCRYPT),PDO::PARAM_STR);
+		//execute UPDATE to DB
+		$pdoStatement->execute();
+	}
+}
 
 //IF TOKEN VALID, SHOW FORM************
 if ($tokenOk) {
@@ -54,9 +71,9 @@ if ($tokenOk) {
 		<fieldset>
 			<legend>Change password</legend>
 			<input type="hidden" name="email" value="<?php echo $emailClient; ?>" />
-			<input type="password" name="passwordToto1" value="" placeholder="Your password" />Must contain, like, at least 8 chars or sumthin...<br />
-			<input type="password" name="passwordToto2" value="" placeholder="Confirm your password" />Here too!<br />
-			<input type="submit" value="Change password"><br />
+			<input type="password" name="passwordChange1" value="" placeholder="Your password" />Must contain, like, at least 8 chars...<br />
+			<input type="password" name="passwordChange2" value="" placeholder="Confirm your password" />Here too!<br />
+			<input type="submit" value="CHANGE PWD"><br />
 		</fieldset>
 	</form>
 <?php
