@@ -2,7 +2,7 @@
 require 'config.php';
 ?><html>
 <head>
-	<title>Change Password</title>
+	<title>Change Password toto</title>
 </head>
 <body>
 <?php
