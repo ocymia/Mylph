@@ -5,7 +5,8 @@ include_once '../inisql/initialize_roles.php';
 ?>
 <pre>
 <?php
- 
+session_start();
+ //print_r($_SESSION);
 require 'config.php';
 //SQL REQUEST
 $getLocations="
