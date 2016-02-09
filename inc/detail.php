@@ -57,7 +57,10 @@ $currentSissi = $_SESSION['user_id'];//id!
 $currentLoc = $_GET['loc'];
 $getRating="SELECT vote_rating FROM vote WHERE locations_loc_id=".$currentLoc." AND users_usr_id=".$currentSissi;
 $pdoStatement=$pdo->query($getRating);
+echo 'pdoStatement';
+print_r($pdoStatement);
 $thisRating = $pdoStatement -> fetch();
+echo 'thisRating';
 print_r($thisRating);
 //show that many stars
 //each click on a star should make the nbew rating update
@@ -66,11 +69,8 @@ print_r($thisRating);
 
 }
 
-?>
-<form action="" method="post">
-	<input type="submit" value="like"/>
-</form>
 
+?>
 
 
 
