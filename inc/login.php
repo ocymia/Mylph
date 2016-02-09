@@ -24,6 +24,7 @@ session_start();
 					<input type="email" name="emailLogin" value="" placeholder="Email address" /><br/>
 					<input type="password" name="passwordLogin" value="" placeholder="Password" /><br/>
 					<input type="submit" value="LOG IN">
+					<a href="lost_password.php">LOST PASSWORD</a>
 				</fieldset>
 			</form>
 			<?php
