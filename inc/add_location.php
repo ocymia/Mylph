@@ -1,8 +1,5 @@
 <?php
-//conenction details for db // contains $pdo
-require 'config.php';
-//function to add location (add_location())
-require 'functions.php';
+//require 'header.php';
 
 //if the form is submitted == if there are post variables
 if (!empty($_POST)) {
