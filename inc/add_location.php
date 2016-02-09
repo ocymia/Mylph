@@ -19,9 +19,8 @@ if (!empty($_POST)) {
 	//$loc_img est probablemnt a changer vu qu'on va devoir importer un fichier blob...
 	$loc_img = isset($_POST['loc_img']) ? trim($_POST['loc_img']) : ''; 
 	$loctype_typ_id = isset($_POST['loctype_typ_id']) ? intval(trim($_POST['loctype_typ_id'])) : 0; 
-	
-	//$loc_x ; //auto via google api?!
-	//$loc_y ; //auto via google api?!
+	// coordonnées latitude & longitude
+	$locXY = geocode($_POST['loc_adr'] . "," . $_POST['loc_city']);
 
 	//for uploading image
 	if (count($_FILES)>0) {
@@ -29,8 +28,8 @@ if (!empty($_POST)) {
 	}
 	//sql for adding location
 	$add_loc_sql ="
-		INSERT INTO locations (loc_name,loc_adr ,loc_city ,loc_cp ,loc_desc ,loc_img ,loctype_typ_id)
-		VALUES (:name,:adr ,:city ,:cp ,:desc ,:img ,:typ_id)
+		INSERT INTO locations (loc_name,loc_adr ,loc_city ,loc_cp ,loc_desc ,loc_img ,loctype_typ_id, loc_x, loc_y)
+		VALUES (:name,:adr ,:city ,:cp ,:desc ,:img ,:typ_id ,:loc_x ,:loc_y)
 	";
 
 	// Inserting into db
@@ -43,6 +42,8 @@ if (!empty($_POST)) {
 	$pdoStatement->bindValue(':desc', $loc_desc);
 	$pdoStatement->bindValue(':img', $loc_img);
 	$pdoStatement->bindValue(':typ_id', $loctype_typ_id);
+	$pdoStatement->bindValue(':loc_x', $locXY['1']);
+	$pdoStatement->bindValue(':loc_y', $locXY['2']);
 
 	$pdoStatement->execute();
 
