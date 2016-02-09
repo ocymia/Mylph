@@ -75,7 +75,10 @@ if (!empty($_POST)) {
 			</tr>
 			<tr>
 				<td>Type :&nbsp;</td>
-				<td><input type="text" name="loctype_typ_id" value=""/></td>
+				<td><input type="radio" name="loctype_typ_id" value="1"/>Restaurant
+				<input type="radio" name="loctype_typ_id" value="2"/>Entertainment
+				<input type="radio" name="loctype_typ_id" value="3"/>Accessibility
+				<input type="radio" name="loctype_typ_id" value="4"/>Other</td>
 			</tr>
 			<td><input type="submit" value="add location"/></td>
 		</table>
