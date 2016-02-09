@@ -16,7 +16,7 @@ function autoMail($to, $subject, $messsageHTML, $messageText) {
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = 'smtp.googlemail.com';  				// Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = ''/*INSERT VALID ACCOUNT*/;                 // SMTP username
+	$mail->Username = 'ginmax89@gmail.com';                 // SMTP username
 	$mail->Password = file_get_contents('password.txt');  // SMTP password
 	$mail->SMTPSecure = 'tls';
 	$mail->Port = 587;                                    // TCP port to connect to
@@ -33,4 +33,8 @@ function autoMail($to, $subject, $messsageHTML, $messageText) {
 
 	return $mail->send();
 }
+
+
+//DEFINE ABSOLUTE URL, NEED TO CHANGE THIS!!!!!!!!************************************************************
+define('ABSOLUTE_URL', 'http://localhost/phpMax/projet_equipe/mylph/inc/');
 ?>

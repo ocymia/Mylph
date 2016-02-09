@@ -6,6 +6,7 @@ require 'config.php';
 </head>
 <body>
 <?php
+//_GET email and token linked from email*******
 $emailClient = isset($_GET['email']) ? trim($_GET['email']) : '';
 $token = isset($_GET['token']) ? trim($_GET['token']) : '';
 
@@ -13,6 +14,7 @@ $token = isset($_GET['token']) ? trim($_GET['token']) : '';
 $tokenOk = false;
 
 if (!empty($token)) {
+	//check user email in db request
 	$checkEmail = '
 		SELECT usr_id, usr_pwd
 		FROM users
@@ -25,36 +27,35 @@ if (!empty($token)) {
 
 		$res = $pdoStatement->fetch();
 
-		$tokenValid = md5($emailClient.'salty_mylph_overload'.$res['usr_pwd']);
+		$tokenValid = md5($emailClient.'salty_mylph'.$res['usr_pwd']);
 
 		// COMPARE TOKENS
 		if ($tokenValid === $token) {
+			//PERMITS TO SHOW FORM LATER IF TOKEN OK
 			$tokenOk = true;
 		}
 		else {
-			echo 'token invalid<br />';
+			echo 'GET A REAL TOKEN, BRAH!<br />';
 		}
 	}
 	else {
-		echo 'email does not exists<br />';
+		echo 'NO SUCH EMAIL<br />';
 	}
 }
 else {
-	echo 'token empty<br />';
+	echo "WHERE'S YOUR TOKEN DUDE?!<br />";
 }
 
-// TODO : écrire le code permettant de récupérer les données en POST
-// et de modifier le password du user
 
-// On affiche le formulaire de changement de password qui si le token est valide
+//IF TOKEN VALID, SHOW FORM************
 if ($tokenOk) {
 ?>
 	<form action="" method="post">
 		<fieldset>
 			<legend>Change password</legend>
 			<input type="hidden" name="email" value="<?php echo $emailClient; ?>" />
-			<input type="password" name="passwordToto1" value="" placeholder="Your password" /> (8 caractères minimum)<br />
-			<input type="password" name="passwordToto2" value="" placeholder="Confirm your password" /><br />
+			<input type="password" name="passwordToto1" value="" placeholder="Your password" />Must contain, like, at least 8 chars or sumthin...<br />
+			<input type="password" name="passwordToto2" value="" placeholder="Confirm your password" />Here too!<br />
 			<input type="submit" value="Change password"><br />
 		</fieldset>
 	</form>

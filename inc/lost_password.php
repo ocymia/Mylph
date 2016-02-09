@@ -24,7 +24,7 @@ if (!empty($_POST)) {
 		if ($pdoStatement->execute() && $pdoStatement->rowCount() > 0) {
 			$res = $pdoStatement->fetch();
 			// CREATE USER TOKEN (ITS USER EMAIL + SALT + USER PASSWORD)
-			$token = md5($email.'salty_mylph_overload'.$res['usr_pwd']);
+			$token = md5($email.'salty_mylph'.$res['usr_pwd']);
 
 			$emailHTML = '<a href="'.ABSOLUTE_URL.'change_password.php?email='.$email.'&token='.$token.'">Click here to change your password</a>';
 			$emailText = 'Go here : '.ABSOLUTE_URL.'change_password.php?email='.$email.'&token='.$token;
