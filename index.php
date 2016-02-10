@@ -1,46 +1,23 @@
-<!DOCTYPE html>
+<?php require('inc/header.php'); ?>
+
 <html>
 <head>
-	<title>TEMP</title>
+<title>&Eacute;tapes du projet en &eacute;quipe</title>
 </head>
 <body>
-Juste en attendant d avoir un acceuil afin de donner easy access aux trux
-
-<ul>
-	<li>
-		<a href="inc/add_location.php">add_location.php</a>
-	</li>
-	<li>
-		<a href="inc/signup.php">signup.php</a>
-	</li>
-	<li>
-		<a href="inc/login.php">login.php</a>
-	</li>
-	<li>
-		<a href="inc/admin_users.php">admin_users.php</a>
-	</li>
-	<li>
-		<a href="inc/admin_locations.php">admin_locations.php</a>
-	</li>
-	<li>
-		<a href="inc/accueil.php">accueil.php</a>
-	</li>
-	<li>
-		<a href="inc/detail.php">detail.php</a>
-	</li>
-
-
-
-</ul>
-
-
-
- <link rel="stylesheet" href="style/style.css">
-<?php
-include('inc/config.php');
-include('inc/functions.php');
-map_multiple();
-?>
-
+	<?php
+		if (!empty($_SESSION)) {
+			header('Location: inc/accueil.php');
+		} else if ($_SESSION['usr_role']==2) {
+			header('Location: index_of_jerry.php');
+		} else {
+			header('Location: inc/login.php');
+		}
+	?>
 </body>
 </html>
+
+
+
+<?php require('footer.php'); ?>
+

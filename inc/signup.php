@@ -1,10 +1,4 @@
-<?php session_start() ?>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>SIGN UP</title>
-</head>
-<body>
+<?php require 'header.php'; ?>
 <pre>
 	<?php
 		if (!empty($_SESSION)) {
@@ -21,8 +15,6 @@
 			$userRole=$_POST['role'];
 			//Vérifications
 			if ($passwordSignup1===$passwordSignup2 && !empty($passwordSignup1) && !empty($emailSignup) && filter_var($_POST['emailSignup'],FILTER_VALIDATE_EMAIL) && strlen($passwordSignup1)>7 && preg_match('/[A-Z]/',$passwordSignup1) && preg_match('/[0-9]/', $passwordSignup1)) {
-				//REQUIRE CONNECTION TO DB
-				require 'config.php';
 				//CHECK IF EMAIL IS UNIQUE
 				$emailCheck="
 					SELECT usr_email
@@ -51,13 +43,14 @@
 						//echo 'You have signed up successfully<br/>';
 						//store user id in session for further use
 						$idRequest="
-							SELECT usr_id
+							SELECT usr_id,roles_id
 							FROM users
 							WHERE usr_email='".$emailSignup."'"
 						;
 						$pdoStatement=$pdo->query($idRequest);
 						$fetchId=$pdoStatement->fetch();
 						$_SESSION['user_id']=$fetchId['usr_id'];
+						$_SESSION['usr_role']=$fetchId['roles_id'];
 						header("Location: accueil.php");
 						exit;
 					} else {

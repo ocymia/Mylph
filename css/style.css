@@ -1,22 +1,51 @@
 /*indispensable à l'api maps*/
+*{
+	font-family: Roboto;
+	text-align:center;
+}
 html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	background-color:#FFCD6C;
 }
 
+
 #map_unique {
-	width: 600px;
+	width: 100% !important;
 	height: 300px;
 }
 
 #map_multiple {
-	width: 600px;
+	width: 100% !important;
 	height: 300px;
 }
 /*fin necessités de maps*/
 
-img{
+.star{
+	width: 30px;
+	height: 30px;
+
+}
+
+header img{
+	height: 10%;
+	width: 100%;
+}
+.adm_loc_img{
 	width:500px;
 	border:solid black 1px;
+	
+}
+
+#mapA{
+	width: 100% !important;
+
+}
+.div_accueil{
+	border:solid black 1px;
+	border-radius:10px;
+	margin:20px;
+	padding:5px;
+	background-color:#FFC046;
 }

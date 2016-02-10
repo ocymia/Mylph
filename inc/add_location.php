@@ -3,8 +3,8 @@
 
 //if the form is submitted == if there are post variables
 if (!empty($_POST)) {
-	print_r($_POST); // pour debug
-	print_r($_FILES); //for debug too
+	// print_r($_POST); // pour debug
+	// print_r($_FILES); //for debug too
 	// Récupération et traitement des variables du formulaire d'ajout/modification
 	
 	//loc_id ; //auto incremented at creation?!
@@ -60,6 +60,7 @@ if (!empty($_POST)) {
 
 	// insertion ou modification dans mysql
 	$pdoStatement->execute();
+	echo "Location Added / Modified";
 
 }//end (!empty($_POST))
 

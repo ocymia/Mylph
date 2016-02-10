@@ -1,3 +1,12 @@
+CREATE TABLE likes (
+  locations_loc_id INTEGER UNSIGNED NOT NULL,
+  users_usr_id INTEGER UNSIGNED NOT NULL,
+  vote_like BOOL NULL,
+  PRIMARY KEY(locations_loc_id, users_usr_id),
+  INDEX locations_has_users_FKIndex1(locations_loc_id),
+  INDEX locations_has_users_FKIndex2(users_usr_id)
+);
+
 CREATE TABLE locations (
   loc_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   loctype_typ_id INTEGER UNSIGNED NOT NULL,
@@ -39,8 +48,6 @@ CREATE TABLE vote (
   users_usr_id INTEGER UNSIGNED NOT NULL,
   locations_loc_id INTEGER UNSIGNED NOT NULL,
   vote_rating TINYINT UNSIGNED NOT NULL DEFAULT 0,
-  vote_like BOOL NULL,
-  vote_comment VARCHAR(500) NULL,
   PRIMARY KEY(users_usr_id, locations_loc_id),
   INDEX users_has_locations_FKIndex1(users_usr_id),
   INDEX users_has_locations_FKIndex2(locations_loc_id)

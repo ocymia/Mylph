@@ -1,13 +1,11 @@
-<?php
-session_start();
-?>
+
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>LOGIN</title>
 </head>
 <body>
-
+<?php require 'header.php'; ?>
 <pre>
 	<?php
 		//FIRST CHECK IF USER IS ALREADY LOGGED IN**************
@@ -24,6 +22,7 @@ session_start();
 					<input type="email" name="emailLogin" value="" placeholder="Email address" /><br/>
 					<input type="password" name="passwordLogin" value="" placeholder="Password" /><br/>
 					<input type="submit" value="LOG IN">
+					<a href="lost_password.php">LOST PASSWORD</a>
 				</fieldset>
 			</form>
 			<?php
@@ -35,22 +34,25 @@ session_start();
 				//VERIFICATION
 				if (!empty($emailLogin)&&!empty($passwordLogin)) {
 					//require connection to DB in config
-					require 'config.php';
+					//TWO REQUIRES ALREADY IN HEADER*************** FUCK CONFIG.PHP!!!!!!
+					//require 'config.php';
 					// functions.php should contain function for user verification with DB
-					require 'functions.php';
+					//require 'functions.php';
 
 					//VERIFY PWD*********
 					if (user_verif($emailLogin,$passwordLogin)) {
 						//If login successful redirect to accueil.php and store id in session
 						$idRequest="
-							SELECT usr_id
+							SELECT usr_id,roles_id
 							FROM users
 							WHERE usr_email='".$emailLogin."'"
 						;
 						$pdoStatement=$pdo->query($idRequest);
 						$fetchId=$pdoStatement->fetch();
 						$_SESSION['user_id']=$fetchId['usr_id'];
-						print_r($_SESSION);
+						$_SESSION['usr_role']=$fetchId['roles_id'];
+						//FOR DEBUG PRINT_R:
+						//print_r($_SESSION);
 						header("Location: accueil.php");
 						exit;
 					}
