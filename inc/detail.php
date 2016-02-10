@@ -76,7 +76,7 @@ if (!empty($_GET['loc'])) {
 	echo '<h2>Map : </h2><br>';
 	map_unique($thisLocation['loc_x'],$thisLocation['loc_y'],$thisLocation['loc_name']);
 	//echo $thisLocation['loc_img'].'image space<br>';
-	echo '<img clas="adm_loc_img" src="data:image/jpeg;base64,'.base64_encode($thisLocation['loc_img']).'"/>';
+	echo '<img class="adm_loc_img" src="data:image/jpeg;base64,'.base64_encode($thisLocation['loc_img']).'"/>';
 
 	echo '<br><br><br>';
 	echo '<h3>Rate this Location</h3><br>';
