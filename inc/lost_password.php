@@ -1,6 +1,16 @@
 <?php
 
+<<<<<<< HEAD
 require 'header.php';
+=======
+require 'config.php';
+?><html>
+<head>
+	<title>Password forgotten</title>
+</head>
+<body>
+<?php
+>>>>>>> bfc7886f3e0a560226ef6869523ba3fbf9e160e1
 
 // IF SUBMIT
 if (!empty($_POST)) {

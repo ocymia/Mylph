@@ -1,7 +1,17 @@
 <?php
+<<<<<<< HEAD
 require 'header.php';
 
 
+=======
+require 'config.php';
+?><html>
+<head>
+	<title>Change Password toto</title>
+</head>
+<body>
+<?php
+>>>>>>> bfc7886f3e0a560226ef6869523ba3fbf9e160e1
 //_GET email and token linked from email*******
 $emailClient = isset($_GET['email']) ? trim($_GET['email']) : '';
 $token = isset($_GET['token']) ? trim($_GET['token']) : '';
@@ -32,6 +42,7 @@ if (!empty($token)) {
 			$tokenOk = true;
 		}
 		else {
+<<<<<<< HEAD
 			echo 'This token is no longer valid.<br />';
 		}
 	}
@@ -41,6 +52,17 @@ if (!empty($token)) {
 }
 else {
 	echo "The URL you entered has no token.<br />";
+=======
+			echo 'GET A REAL TOKEN, BRAH!<br />';
+		}
+	}
+	else {
+		echo 'NO SUCH EMAIL<br />';
+	}
+}
+else {
+	echo "WHERE'S YOUR TOKEN DUDE?!<br />";
+>>>>>>> bfc7886f3e0a560226ef6869523ba3fbf9e160e1
 }
 //GET NEW PASSWORD FROM $_POST AND CHECK IF VALID*******
 if (!empty($_POST)) {
@@ -57,9 +79,12 @@ if (!empty($_POST)) {
 		$pdoStatement->bindValue(':newPassword',password_hash($passwordChange1,PASSWORD_BCRYPT),PDO::PARAM_STR);
 		//execute UPDATE to DB
 		$pdoStatement->execute();
+<<<<<<< HEAD
 		session_destroy();
 		header('Location: accueil.php');
 		exit;
+=======
+>>>>>>> bfc7886f3e0a560226ef6869523ba3fbf9e160e1
 	}
 }
 
@@ -70,6 +95,7 @@ if ($tokenOk) {
 		<fieldset>
 			<legend>Change password</legend>
 			<input type="hidden" name="email" value="<?php echo $emailClient; ?>" />
+<<<<<<< HEAD
 			<input type="password" name="passwordChange1" value="" placeholder="Your password" />At least 8 characters, 1MAJ and 1 number<br />
 			<input type="password" name="passwordChange2" value="" placeholder="Confirm your password" /><br />
 			<input type="submit" value="Change password"><br />
@@ -78,6 +104,14 @@ if ($tokenOk) {
 <?php
 } else {
 	echo '<p>Please verify if you used the correct link.</p>';
+=======
+			<input type="password" name="passwordChange1" value="" placeholder="Your password" />Must contain, like, at least 8 chars...<br />
+			<input type="password" name="passwordChange2" value="" placeholder="Confirm your password" />Here too!<br />
+			<input type="submit" value="CHANGE PWD"><br />
+		</fieldset>
+	</form>
+<?php
+>>>>>>> bfc7886f3e0a560226ef6869523ba3fbf9e160e1
 }
 ?>
 </body>

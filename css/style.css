@@ -35,6 +35,7 @@ header img{
 .adm_loc_img{
 	width:500px;
 	border:solid black 1px;
+<<<<<<< HEAD
 	
 }
 
@@ -48,4 +49,12 @@ header img{
 	margin:20px;
 	padding:5px;
 	background-color:#FFC046;
+=======
+}
+
+.star{
+	width: 30px;
+	height: 30px;
+
+>>>>>>> bfc7886f3e0a560226ef6869523ba3fbf9e160e1
 }

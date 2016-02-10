@@ -2,6 +2,7 @@
 require 'header.php';
 include_once '../inisql/initialize_loc_types.php';
 include_once '../inisql/initialize_roles.php';
+<<<<<<< HEAD
 
 // Display da multiple map, dans la div #multiple_map
 echo '<div id=mapA>';
@@ -20,6 +21,15 @@ if(isset($_SESSION['usr_role']) && $_SESSION['usr_role'] == 2){
 }
 
 //SQL REQUEST For Locations
+=======
+?>
+<pre>
+<?php
+session_start();
+ //print_r($_SESSION);
+require 'config.php';
+//SQL REQUEST
+>>>>>>> bfc7886f3e0a560226ef6869523ba3fbf9e160e1
 $getLocations="
 	SELECT *
 	FROM locations
