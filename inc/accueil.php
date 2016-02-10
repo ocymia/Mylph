@@ -23,6 +23,7 @@ if(isset($_SESSION['usr_role']) && $_SESSION['usr_role'] == 2){
 $getLocations="
 	SELECT *
 	FROM locations
+	LIMIT 10
 ";
 $pdoStatement=$pdo->prepare($getLocations);
 //EXECUTE IT
